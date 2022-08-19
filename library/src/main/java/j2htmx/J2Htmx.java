@@ -4,7 +4,9 @@
  */
 package j2htmx;
 
+import static j2html.TagCreator.script;
 import j2html.attributes.Attribute;
+import j2html.tags.ContainerTag;
 
 /**
  *
@@ -57,6 +59,12 @@ public class J2Htmx {
 
     private Attribute attribute(String key, String value) {
         return new Attribute(key, value);
+    }
+
+    public static ContainerTag withHx(ContainerTag tag) {
+        return tag.with(script().withSrc("https://unpkg.com/htmx.org@1.8.0")
+                .attr("integrity", "sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc")
+                .attr("crossorigin", "anonymous"));
     }
 
     public Attribute boost(String value) {
