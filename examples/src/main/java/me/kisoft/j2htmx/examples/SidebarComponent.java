@@ -6,10 +6,11 @@ package me.kisoft.j2htmx.examples;
 
 import io.javalin.http.Context;
 import static j2html.TagCreator.a;
-import static j2html.TagCreator.aside;
 import static j2html.TagCreator.div;
 import static j2html.TagCreator.li;
+import static j2html.TagCreator.span;
 import static j2html.TagCreator.ul;
+import j2html.tags.DomContent;
 import j2html.tags.Tag;
 import static j2htmx.J2Htmx.hx;
 
@@ -26,29 +27,44 @@ public class SidebarComponent {
     }
 
     private String render() {
-        return aside(
-                ul(
-                        li(
-                                a("Facebook").withHref("https://facebook.com")
-                                        .withTarget("_blank")
-                        ),
-                        li(
-                                a("Twitter").withHref("https://facebook.com")
-                                        .withTarget("_blank")
-                        ),
-                        li(
-                                a("Linkedin").withHref("https://facebook.com")
-                                        .withTarget("_blank")
-                        )
+        return sidebarContainer(
+                sidebarHeader(),
+                navList(
+                        navItem("Facebook", "https://facebook.com", true),
+                        navItem("Twitter", "https://twitter.com", false),
+                        navItem("Linkedin", "https://linkedin.com", false)
                 )
         ).render();
     }
-    
-    public static Tag sidebar(){
-       return div().attr(hx.get("/sidebar"))
-                                .attr(hx.swap("outerHTML"))
-                                .attr(hx.target("this"))
-                                .attr(hx.trigger("load"));
+
+    private Tag sidebarContainer(DomContent... content) {
+        return div(content).withClass("d-flex flex-column flex-shrink-0 p-3 text-bg-dark")
+                .withStyle("width:280px;");
+    }
+
+    private Tag sidebarHeader() {
+        return a(
+                span("Sidebar").withClass("fs-4")
+        ).withClass("d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none");
+    }
+
+    private Tag navItem(String text, String href, boolean active) {
+        return li(
+                a(text).withClass("nav-link text-white")
+                        .withCondClass(active, "active")
+                        .withHref(href)
+        ).withClass("nav-item");
+    }
+
+    private Tag navList(DomContent... content) {
+        return ul(content).withClass("nav nav-pills flex-column mb-auto");
+    }
+
+    public static Tag sidebar() {
+        return div().attr(hx.get("/sidebar"))
+                .attr(hx.swap("outerHTML"))
+                .attr(hx.target("this"))
+                .attr(hx.trigger("load"));
     }
 
     public static String sidebarComponent(Context ctx) {
