@@ -6,11 +6,11 @@ package me.kisoft.j2htmx.examples;
 
 import io.javalin.http.Context;
 import static j2html.TagCreator.body;
-import static j2html.TagCreator.button;
-import static j2html.TagCreator.div;
 import static j2html.TagCreator.h1;
-import static j2htmx.J2Htmx.hx;
+import static j2html.TagCreator.main;
 import static j2htmx.J2Htmx.withHx;
+import static me.kisoft.j2htmx.examples.JokeHeader.jokeHeader;
+import static me.kisoft.j2htmx.examples.SidebarComponent.sidebar;
 
 /**
  *
@@ -25,14 +25,16 @@ public class HomePage {
     }
 
     private String render() {
-        return withHx(
-                body(
+        return withHx(body(
+                sidebar(),
+                main(
                         h1("Hello, World!"),
-                        div().withId("joke-container"),
-                        button().withText("Click for a new Joke")
-                                .attr(hx.get(JokeController.rootPath()))
-                                .attr(hx.target("#joke-container"))
+                        jokeHeader(),
+                        jokeHeader(),
+                        jokeHeader(),
+                        jokeHeader()
                 )
+        ).withStyle("display:flex;flex-direction:row;")
         ).render();
     }
 

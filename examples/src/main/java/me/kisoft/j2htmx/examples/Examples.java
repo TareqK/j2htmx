@@ -16,6 +16,7 @@ public class Examples {
         Javalin app = Javalin.create();
         app.get(HomeController.rootPath(), HomeController::index);
         app.get(JokeController.rootPath(), JokeController::index);
+        app.get(SidebarController.rootPath(),SidebarController::index);
         app.start(8080);
     }
 }
