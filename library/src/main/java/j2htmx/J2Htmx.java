@@ -54,17 +54,25 @@ public class J2Htmx {
         private static final String SYNC_ATTR_NAME = "hx-sync";
         private static final String VARS_ATTR_NAME = "hx-vars";
         private static final String WS_ATTR_NAME = "hx-ws";
+        private static final String HTMX_SRC="https://unpkg.com/htmx.org@1.8.0";
+        private static final String HTMX_INTEGRITY = "sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc";
+        private static final String HTMX_CROSSORIGIN = "anonymous";
 
     }
 
     private Attribute attribute(String key, String value) {
         return new Attribute(key, value);
     }
-
+    
+    /**
+     * Injects htmx into a container tag
+     * @param tag
+     * @return 
+     */
     public static ContainerTag withHx(ContainerTag tag) {
-        return tag.with(script().withSrc("https://unpkg.com/htmx.org@1.8.0")
-                .attr("integrity", "sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc")
-                .attr("crossorigin", "anonymous"));
+        return tag.with(script().withSrc(Constants.HTMX_SRC)
+                .attr("integrity", Constants.HTMX_INTEGRITY)
+                .attr("crossorigin", Constants.HTMX_CROSSORIGIN));
     }
 
     public Attribute boost(String value) {
