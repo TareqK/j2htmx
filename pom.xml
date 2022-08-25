@@ -5,6 +5,7 @@
     <artifactId>j2htmx-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
+    <name>j2htmx</name>
     <modules>
         <module>library</module>
         <module>examples</module>
@@ -20,8 +21,8 @@
     <description>HTMX attribute extentions for j2html</description>
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <name>MIT License</name>
+            <url>https://raw.githubusercontent.com/TareqK/j2htmx/master/license</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
