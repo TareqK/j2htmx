@@ -11,6 +11,12 @@
         <maven.compiler.target>11</maven.compiler.target>
         <exec.mainClass>me.kisoft.j2htmx.examples.Examples</exec.mainClass>
     </properties>
+    <parent>
+        <groupId>me.kisoft</groupId>
+        <artifactId>j2htmx-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>io.javalin</groupId>
