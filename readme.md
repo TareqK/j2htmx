@@ -23,7 +23,6 @@ should ideally be your ``head`` tag
 
 
 ```java
-
 html(
     withHtmxImport(
         head()
