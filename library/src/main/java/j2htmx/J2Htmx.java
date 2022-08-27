@@ -11,6 +11,7 @@ import j2html.tags.ContainerTag;
 /**
  *
  * @author tareq
+ * A Class containing all functionalities of HTMX for usage with J2Html
  */
 public class J2Htmx {
 
@@ -18,7 +19,26 @@ public class J2Htmx {
 
     }
 
+    private Attribute attribute(String key, String value) {
+        return new Attribute(key, value);
+    }
+
+    /**
+     * A Functional interface to generate attributes
+     */
+    public interface AttributeGenerator {
+
+        /**
+         * Generate the value of an attribute
+         *
+         * @return A String value for an attribute
+         */
+        public String generate();
+    }
+
     public static J2Htmx hx = new J2Htmx();
+
+    private final AttributeGenerator emptyAttributeGenerator = () -> null;
 
     private static class Constants {
 
@@ -62,8 +82,18 @@ public class J2Htmx {
 
     }
 
-    private Attribute attribute(String key, String value) {
-        return new Attribute(key, value);
+    public static class Headers {
+
+        public static final String REQUEST = "HX-Request";
+        public static final String TRIGGER = "HX-Trigger";
+        public static final String TRIGGER_NAME = "HX-Trigger-Name";
+        public static final String TARGET = "HX-Target";
+        public static final String PROMPT = "HX-Prompt";
+        public static final String PUSH = "HX-Push";
+        public static final String REDIRECT = "HX-Redirect";
+        public static final String REFRESH = "HX-Refresh";
+        public static final String TRIGGER_AFTER_SWAP = "HX-Trigger-After-Swap";
+        public static final String TRIGGER_AFTER_SETTLE = "HX-Trigger-After-Settle";
     }
 
     /**
@@ -93,7 +123,11 @@ public class J2Htmx {
     }
 
     public Attribute boost() {
-        return boost(null);
+        return boost(emptyAttributeGenerator);
+    }
+
+    public Attribute boost(AttributeGenerator generator) {
+        return boost(generator.generate());
     }
 
     public Attribute get(String value) {
@@ -101,7 +135,11 @@ public class J2Htmx {
     }
 
     public Attribute get() {
-        return get(null);
+        return get(emptyAttributeGenerator);
+    }
+
+    public Attribute get(AttributeGenerator generator) {
+        return get(generator.generate());
     }
 
     public Attribute post(String value) {
@@ -109,7 +147,11 @@ public class J2Htmx {
     }
 
     public Attribute post() {
-        return post(null);
+        return post(emptyAttributeGenerator);
+    }
+
+    public Attribute post(AttributeGenerator generator) {
+        return post(generator.generate());
     }
 
     public Attribute pushUrl(String value) {
@@ -117,7 +159,11 @@ public class J2Htmx {
     }
 
     public Attribute pushUrl() {
-        return pushUrl(null);
+        return pushUrl(emptyAttributeGenerator);
+    }
+
+    public Attribute pushUrl(AttributeGenerator generator) {
+        return pushUrl(generator.generate());
     }
 
     public Attribute select(String value) {
@@ -125,7 +171,11 @@ public class J2Htmx {
     }
 
     public Attribute select() {
-        return select(null);
+        return select(emptyAttributeGenerator);
+    }
+
+    public Attribute select(AttributeGenerator generator) {
+        return select(generator.generate());
     }
 
     public Attribute selectOob(String value) {
@@ -133,7 +183,11 @@ public class J2Htmx {
     }
 
     public Attribute selectOob() {
-        return selectOob(null);
+        return selectOob(emptyAttributeGenerator);
+    }
+
+    public Attribute selectOob(AttributeGenerator generator) {
+        return selectOob(generator.generate());
     }
 
     public Attribute swap(String value) {
@@ -141,7 +195,11 @@ public class J2Htmx {
     }
 
     public Attribute swap() {
-        return swap(null);
+        return swap(emptyAttributeGenerator);
+    }
+
+    public Attribute swap(AttributeGenerator generator) {
+        return swap(generator.generate());
     }
 
     public Attribute swapOob(String value) {
@@ -149,7 +207,11 @@ public class J2Htmx {
     }
 
     public Attribute swapOob() {
-        return swapOob(null);
+        return swapOob(emptyAttributeGenerator);
+    }
+
+    public Attribute swapOob(AttributeGenerator generator) {
+        return swapOob(generator.generate());
     }
 
     public Attribute target(String value) {
@@ -157,7 +219,11 @@ public class J2Htmx {
     }
 
     public Attribute target() {
-        return target(null);
+        return target(emptyAttributeGenerator);
+    }
+
+    public Attribute target(AttributeGenerator generator) {
+        return target(generator.generate());
     }
 
     public Attribute trigger(String value) {
@@ -165,7 +231,11 @@ public class J2Htmx {
     }
 
     public Attribute trigger() {
-        return trigger(null);
+        return trigger(emptyAttributeGenerator);
+    }
+
+    public Attribute trigger(AttributeGenerator generator) {
+        return trigger(generator.generate());
     }
 
     public Attribute vals(String value) {
@@ -173,7 +243,11 @@ public class J2Htmx {
     }
 
     public Attribute vals() {
-        return vals(null);
+        return vals(emptyAttributeGenerator);
+    }
+
+    public Attribute vals(AttributeGenerator generator) {
+        return vals(generator.generate());
     }
 
     public Attribute confirm(String value) {
@@ -181,7 +255,11 @@ public class J2Htmx {
     }
 
     public Attribute confirm() {
-        return confirm(null);
+        return confirm(emptyAttributeGenerator);
+    }
+
+    public Attribute confirm(AttributeGenerator generator) {
+        return confirm(generator.generate());
     }
 
     public Attribute delete(String value) {
@@ -189,7 +267,11 @@ public class J2Htmx {
     }
 
     public Attribute delete() {
-        return delete(null);
+        return delete(emptyAttributeGenerator);
+    }
+
+    public Attribute delete(AttributeGenerator generator) {
+        return delete(generator.generate());
     }
 
     public Attribute disable(String value) {
@@ -197,7 +279,11 @@ public class J2Htmx {
     }
 
     public Attribute disable() {
-        return disable(null);
+        return disable(emptyAttributeGenerator);
+    }
+
+    public Attribute disable(AttributeGenerator generator) {
+        return disable(generator.generate());
     }
 
     public Attribute disinherit(String value) {
@@ -205,7 +291,11 @@ public class J2Htmx {
     }
 
     public Attribute disinherit() {
-        return disinherit(null);
+        return disinherit(emptyAttributeGenerator);
+    }
+
+    public Attribute disinherit(AttributeGenerator generator) {
+        return disinherit(generator.generate());
     }
 
     public Attribute encoding(String value) {
@@ -213,7 +303,11 @@ public class J2Htmx {
     }
 
     public Attribute encoding() {
-        return encoding(null);
+        return encoding(emptyAttributeGenerator);
+    }
+
+    public Attribute encoding(AttributeGenerator generator) {
+        return encoding(generator.generate());
     }
 
     public Attribute ext(String value) {
@@ -221,7 +315,11 @@ public class J2Htmx {
     }
 
     public Attribute ext() {
-        return ext(null);
+        return ext(emptyAttributeGenerator);
+    }
+
+    public Attribute ext(AttributeGenerator generator) {
+        return ext(generator.generate());
     }
 
     public Attribute headers(String value) {
@@ -229,7 +327,11 @@ public class J2Htmx {
     }
 
     public Attribute headers() {
-        return headers(null);
+        return headers(emptyAttributeGenerator);
+    }
+
+    public Attribute headers(AttributeGenerator generator) {
+        return headers(generator.generate());
     }
 
     public Attribute historyElt(String value) {
@@ -237,7 +339,11 @@ public class J2Htmx {
     }
 
     public Attribute historyElt() {
-        return historyElt(null);
+        return historyElt(emptyAttributeGenerator);
+    }
+
+    public Attribute historyElt(AttributeGenerator generator) {
+        return historyElt(generator.generate());
     }
 
     public Attribute include(String value) {
@@ -245,7 +351,11 @@ public class J2Htmx {
     }
 
     public Attribute include() {
-        return include(null);
+        return include(emptyAttributeGenerator);
+    }
+
+    public Attribute include(AttributeGenerator generator) {
+        return include(generator.generate());
     }
 
     public Attribute indicator(String value) {
@@ -253,7 +363,11 @@ public class J2Htmx {
     }
 
     public Attribute indicator() {
-        return indicator(null);
+        return indicator(emptyAttributeGenerator);
+    }
+
+    public Attribute indicator(AttributeGenerator generator) {
+        return indicator(generator.generate());
     }
 
     public Attribute params(String value) {
@@ -261,7 +375,11 @@ public class J2Htmx {
     }
 
     public Attribute params() {
-        return params(null);
+        return params(emptyAttributeGenerator);
+    }
+
+    public Attribute params(AttributeGenerator generator) {
+        return params(generator.generate());
     }
 
     public Attribute patch(String value) {
@@ -269,7 +387,11 @@ public class J2Htmx {
     }
 
     public Attribute patch() {
-        return patch(null);
+        return patch(emptyAttributeGenerator);
+    }
+
+    public Attribute patch(AttributeGenerator generator) {
+        return patch(generator.generate());
     }
 
     public Attribute preserve(String value) {
@@ -277,7 +399,11 @@ public class J2Htmx {
     }
 
     public Attribute preserve() {
-        return preserve(null);
+        return preserve(emptyAttributeGenerator);
+    }
+
+    public Attribute preserve(AttributeGenerator generator) {
+        return preserve(generator.generate());
     }
 
     public Attribute prompt(String value) {
@@ -285,7 +411,11 @@ public class J2Htmx {
     }
 
     public Attribute prompt() {
-        return prompt(null);
+        return prompt(emptyAttributeGenerator);
+    }
+
+    public Attribute prompt(AttributeGenerator generator) {
+        return prompt(generator.generate());
     }
 
     public Attribute put(String value) {
@@ -293,7 +423,11 @@ public class J2Htmx {
     }
 
     public Attribute put() {
-        return put(null);
+        return put(emptyAttributeGenerator);
+    }
+
+    public Attribute put(AttributeGenerator generator) {
+        return put(generator.generate());
     }
 
     public Attribute replaceUrl(String value) {
@@ -301,7 +435,11 @@ public class J2Htmx {
     }
 
     public Attribute replaceUrl() {
-        return replaceUrl(null);
+        return replaceUrl(emptyAttributeGenerator);
+    }
+
+    public Attribute replaceUrl(AttributeGenerator generator) {
+        return replaceUrl(generator.generate());
     }
 
     public Attribute request(String value) {
@@ -309,7 +447,11 @@ public class J2Htmx {
     }
 
     public Attribute request() {
-        return request(null);
+        return request(emptyAttributeGenerator);
+    }
+
+    public Attribute request(AttributeGenerator generator) {
+        return request(generator.generate());
     }
 
     public Attribute sse(String value) {
@@ -317,7 +459,11 @@ public class J2Htmx {
     }
 
     public Attribute sse() {
-        return sse(null);
+        return sse(emptyAttributeGenerator);
+    }
+
+    public Attribute sse(AttributeGenerator generator) {
+        return sse(generator.generate());
     }
 
     public Attribute sync(String value) {
@@ -325,7 +471,11 @@ public class J2Htmx {
     }
 
     public Attribute sync() {
-        return sync(null);
+        return sync(emptyAttributeGenerator);
+    }
+
+    public Attribute sync(AttributeGenerator generator) {
+        return sync(generator.generate());
     }
 
     public Attribute vars(String value) {
@@ -333,7 +483,11 @@ public class J2Htmx {
     }
 
     public Attribute vars() {
-        return vars(null);
+        return vars(emptyAttributeGenerator);
+    }
+
+    public Attribute vars(AttributeGenerator generator) {
+        return vars(generator.generate());
     }
 
     public Attribute ws(String value) {
@@ -341,27 +495,23 @@ public class J2Htmx {
     }
 
     public Attribute ws() {
-        return ws(null);
+        return ws(emptyAttributeGenerator);
+    }
+
+    public Attribute ws(AttributeGenerator generator) {
+        return ws(generator.generate());
     }
 
     public Attribute hyperscript() {
-        return hyperscript(() -> null);
+        return hyperscript(emptyAttributeGenerator);
     }
 
     public Attribute hyperscript(String value) {
         return attribute(Constants.HYPERSCRIPT_ATTR_NAME, value);
     }
 
-    public Attribute hyperscript(HyperscriptGenerator generator) {
+    public Attribute hyperscript(AttributeGenerator generator) {
         return hyperscript(generator.generate());
-    }
-
-    /**
-     * A Functional interface to generate hyperscript scripts
-     */
-    public interface HyperscriptGenerator {
-
-        public String generate();
     }
 
 }
