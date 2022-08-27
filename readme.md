@@ -3,7 +3,7 @@
 [![Maven Central Badge](https://img.shields.io/maven-central/v/me.kisoft/j2htmx)](https://search.maven.org/artifact/me.kisoft/j2htmx)
 [![Discord](https://img.shields.io/discord/725789699527933952)](https://htmx.org/discord)
 
-J2htmx is a set of extentions for j2html to make it work better with [here](https://htmx.org/) attributes and
+J2htmx is a set of extentions for [j2html](https://j2html.com/) to make it work better with [here](https://htmx.org/) attributes and
 [hyperscript](https://hyperscript.org/)
 
 ## Usage
