@@ -10,7 +10,7 @@ import static j2html.TagCreator.h1;
 import static j2html.TagCreator.head;
 import static j2html.TagCreator.html;
 import static j2html.TagCreator.main;
-import static j2htmx.J2Htmx.withHtmx;
+import static j2htmx.J2Htmx.withHtmxImport;
 import static me.kisoft.j2htmx.examples.ContentComponent.content;
 import static me.kisoft.j2htmx.examples.J2HtmlExtentions.withBootstrap;
 import static me.kisoft.j2htmx.examples.J2HtmlExtentions.withFullHeight;
@@ -32,7 +32,7 @@ public class HomePage {
     private String render() {
         return html(
                 withBootstrap(
-                        withHtmx(
+                        withHtmxImport(
                                 head()
                         )
                 ),
