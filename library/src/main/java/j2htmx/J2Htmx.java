@@ -58,6 +58,7 @@ public class J2Htmx {
         private static final String HTMX_INTEGRITY = "sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc";
         private static final String HTMX_CROSSORIGIN = "anonymous";
         private static final String HYPERSCRIPT_SRC = "https://unpkg.com/hyperscript.org@0.9.7";
+        private static final String HYPERSCRIPT_ATTR_NAME = "_";
 
     }
 
@@ -71,7 +72,7 @@ public class J2Htmx {
      * @param tag
      * @return
      */
-    public static ContainerTag withHtmx(ContainerTag tag) {
+    public static ContainerTag withHtmxImport(ContainerTag tag) {
         return tag.with(script().withSrc(Constants.HTMX_SRC)
                 .attr("integrity", Constants.HTMX_INTEGRITY)
                 .attr("crossorigin", Constants.HTMX_CROSSORIGIN));
@@ -79,11 +80,11 @@ public class J2Htmx {
 
     /**
      * Injects hyperscript script imports into a container tag
-     * 
+     *
      * @param tag
-     * @return 
+     * @return
      */
-    public static ContainerTag withHyperscript(ContainerTag tag) {
+    public static ContainerTag withHyperscriptImport(ContainerTag tag) {
         return tag.with(script().withSrc(Constants.HYPERSCRIPT_SRC));
     }
 
@@ -341,6 +342,26 @@ public class J2Htmx {
 
     public Attribute ws() {
         return ws(null);
+    }
+
+    public Attribute hyperscript() {
+        return hyperscript(() -> null);
+    }
+
+    public Attribute hyperscript(String value) {
+        return attribute(Constants.HYPERSCRIPT_ATTR_NAME, value);
+    }
+
+    public Attribute hyperscript(HyperscriptGenerator generator) {
+        return hyperscript(generator.generate());
+    }
+
+    /**
+     * A Functional interface to generate hyperscript scripts
+     */
+    public interface HyperscriptGenerator {
+
+        public String generate();
     }
 
 }
