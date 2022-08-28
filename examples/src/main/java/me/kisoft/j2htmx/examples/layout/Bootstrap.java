@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package me.kisoft.j2htmx.examples;
+package me.kisoft.j2htmx.examples.layout;
 
+import static j2html.TagCreator.div;
 import static j2html.TagCreator.link;
 import static j2html.TagCreator.meta;
 import static j2html.TagCreator.script;
 import j2html.tags.ContainerTag;
+import j2html.tags.DomContent;
 import j2html.tags.specialized.HeadTag;
 import j2html.tags.specialized.MainTag;
 
@@ -15,7 +17,7 @@ import j2html.tags.specialized.MainTag;
  *
  * @author tareq
  */
-public class J2HtmlExtentions {
+public class Bootstrap {
 
     public static ContainerTag withBootstrapCss(ContainerTag tag) {
         return tag.with(
@@ -49,9 +51,12 @@ public class J2HtmlExtentions {
         );
     }
 
-    public static MainTag withFullHeight(MainTag tag) {
+    public static MainTag fullHeight(MainTag tag) {
         return tag.withClass("d-flex flex-nowrap")
                 .withStyle("height: 100vh;height: -webkit-fill-available;max-height: 100vh;overflow-x: auto;overflow-y: hidden;");
     }
 
+    public static DomContent container(DomContent... content) {
+        return div(content).withClass("container-fluid");
+    }
 }
