@@ -11,6 +11,7 @@ import static j2html.TagCreator.head;
 import static j2html.TagCreator.html;
 import static j2html.TagCreator.main;
 import static j2htmx.J2Htmx.withHtmxImport;
+import static me.kisoft.j2htmx.examples.component.CalculatorComponent.calculator;
 import static me.kisoft.j2htmx.examples.layout.Bootstrap.withBootstrap;
 import static me.kisoft.j2htmx.examples.component.JokeComponent.jokeHeader;
 import static me.kisoft.j2htmx.examples.component.SidebarComponent.sidebar;
@@ -43,7 +44,7 @@ public class HomePage extends Page {
                                                 jokeHeader(),
                                                 jokeHeader(),
                                                 jokeHeader(),
-                                                jokeHeader()
+                                                calculator()
                                         )
                                 )
                         )

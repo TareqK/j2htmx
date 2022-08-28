@@ -8,6 +8,7 @@ import me.kisoft.j2htmx.examples.page.HomePage;
 import me.kisoft.j2htmx.examples.component.SidebarComponent;
 import me.kisoft.j2htmx.examples.component.JokeComponent;
 import io.javalin.Javalin;
+import me.kisoft.j2htmx.examples.component.CalculatorComponent;
 
 /**
  *
@@ -20,6 +21,7 @@ public class ExampleApp {
         app.get(HomePage.rootPath(), ctx -> new HomePage().handle(ctx));
         app.get(JokeComponent.rootPath(), ctx -> new JokeComponent().handle(ctx));
         app.get(SidebarComponent.rootPath(), ctx -> new SidebarComponent().handle(ctx));
+        app.post(CalculatorComponent.rootPath(), ctx-> new CalculatorComponent().handle(ctx));
         app.start(8080);
     }
 }
