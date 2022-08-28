@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package me.kisoft.j2htmx.examples;
+package me.kisoft.j2htmx.examples.component;
 
 import io.javalin.http.Context;
 import static j2html.TagCreator.button;
@@ -17,15 +17,14 @@ import org.apache.commons.lang3.RandomStringUtils;
  *
  * @author tareq
  */
-public class JokeHeader {
+public class JokeComponent extends Component {
 
-    private Context ctx;
-
-    private JokeHeader(Context ctx) {
-        this.ctx = ctx;
+    public static final String rootPath() {
+        return "/joke";
     }
 
-    private String render() {
+    @Override
+    public String render(Context ctx) {
         return h2(RandomStringUtils.randomAlphabetic(30)).render();
     }
 
@@ -34,13 +33,9 @@ public class JokeHeader {
         return div(
                 div().withId(randomId),
                 button().withText("Click for a new Joke")
-                        .attr(hx.get(JokeController.rootPath()))
+                        .attr(hx.get(rootPath()))
                         .attr(hx.target("#" + randomId)
                         )
         );
-    }
-
-    public static String jokeHeader(Context ctx) {
-        return new JokeHeader(ctx).render();
     }
 }

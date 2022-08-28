@@ -4,19 +4,22 @@
  */
 package me.kisoft.j2htmx.examples;
 
+import me.kisoft.j2htmx.examples.page.HomePage;
+import me.kisoft.j2htmx.examples.component.SidebarComponent;
+import me.kisoft.j2htmx.examples.component.JokeComponent;
 import io.javalin.Javalin;
 
 /**
  *
  * @author tareq
  */
-public class Examples {
+public class ExampleApp {
 
     public static void main(String[] args) {
         Javalin app = Javalin.create();
-        app.get(HomeController.rootPath(), HomeController::index);
-        app.get(JokeController.rootPath(), JokeController::index);
-        app.get(SidebarController.rootPath(),SidebarController::index);
+        app.get(HomePage.rootPath(), ctx -> new HomePage().handle(ctx));
+        app.get(JokeComponent.rootPath(), ctx -> new JokeComponent().handle(ctx));
+        app.get(SidebarComponent.rootPath(), ctx -> new SidebarComponent().handle(ctx));
         app.start(8080);
     }
 }

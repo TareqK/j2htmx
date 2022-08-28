@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package me.kisoft.j2htmx.examples;
+package me.kisoft.j2htmx.examples.component;
 
 import io.javalin.http.Context;
 import static j2html.TagCreator.a;
@@ -18,15 +18,10 @@ import static j2htmx.J2Htmx.hx;
  *
  * @author tareq
  */
-public class SidebarComponent {
+public class SidebarComponent extends Component {
 
-    private Context ctx;
-
-    private SidebarComponent(Context ctx) {
-        this.ctx = ctx;
-    }
-
-    private String render() {
+    @Override
+    public String render(Context ctx) {
         return sidebarContainer(
                 sidebarHeader(),
                 navList(
@@ -67,7 +62,8 @@ public class SidebarComponent {
                 .attr(hx.trigger("load"));
     }
 
-    public static String sidebarComponent(Context ctx) {
-        return new SidebarComponent(ctx).render();
+    public static final String rootPath() {
+        return "sidebar";
     }
+
 }
